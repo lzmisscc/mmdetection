@@ -22,7 +22,7 @@ def parse_args():
         default=None,
         type=str,
         help='If there is no display interface, you can save it')
-    parser.add_argument('--not-show', default=False, action='store_true')
+    parser.add_argument('--not-show', default=True, action='store_true')
     parser.add_argument(
         '--show-interval',
         type=int,

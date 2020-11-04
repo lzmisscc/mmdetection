@@ -1,4 +1,6 @@
 dataset_type = 'CocoDataset'
+classes = ('cell', )
+
 data_root = '/data/liuzhuang/PubTabNet/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
@@ -32,16 +34,19 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
+        classes=classes,
         ann_file=data_root + 'table_coco.json',
         img_prefix=data_root + 'examples/',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
+        classes=classes,
         ann_file=data_root + 'table_coco.json',
         img_prefix=data_root + 'examples/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
+        classes=classes,
         ann_file=data_root + 'table_coco.json',
         img_prefix=data_root + 'examples/',
         pipeline=test_pipeline))
