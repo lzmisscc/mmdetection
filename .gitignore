@@ -118,4 +118,7 @@ work_dirs/
 *.pth
 *.py~
 *.sh~
+
+
 results/
+None/
