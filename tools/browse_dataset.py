@@ -19,7 +19,7 @@ def parse_args():
         help='skip some useless pipeline')
     parser.add_argument(
         '--output-dir',
-        default=None,
+        default='None',
         type=str,
         help='If there is no display interface, you can save it')
     parser.add_argument('--not-show', default=True, action='store_true')
