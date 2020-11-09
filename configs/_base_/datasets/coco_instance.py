@@ -1,5 +1,5 @@
 dataset_type = 'CocoDataset'
-classes = ('cell', )
+classes = ('thead', 'tbody',)
 
 data_root = ''
 img_norm_cfg = dict(
@@ -30,24 +30,26 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    samples_per_gpu=5,
-    workers_per_gpu=5,
+    samples_per_gpu=2,
+    workers_per_gpu=2,
     train=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + '/data/liuzhuang/Github/PubTabNet/table_json/table_coco_train.json',
+        ann_file=data_root +
+        '/data/liuzhuang/Github/PubTabNet/table_json/thead_tbody_coco_train.json',
         img_prefix=data_root + '/data/liuzhuang/DataSet/pubtabnet/train',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + '/data/liuzhuang/Github/PubTabNet/table_json/table_coco_val.json',
+        ann_file=data_root +
+        '/data/liuzhuang/Github/PubTabNet/table_json/thead_tbody_coco_val.json',
         img_prefix=data_root + '/data/liuzhuang/DataSet/pubtabnet/val',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + '/data/liuzhuang/Github/PubTabNet/table_json/table_coco_val.json',
+        ann_file=data_root + '/data/liuzhuang/Github/PubTabNet/table_json/thead_tbody_coco_val.json',
         img_prefix=data_root + '/data/liuzhuang/DataSet/pubtabnet/val',
         pipeline=test_pipeline))
 evaluation = dict(metric=['bbox', 'segm'])
