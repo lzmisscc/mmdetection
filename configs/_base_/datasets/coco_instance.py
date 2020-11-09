@@ -36,20 +36,20 @@ data = dict(
         type=dataset_type,
         classes=classes,
         ann_file=data_root +
-        '/data/liuzhuang/Github/PubTabNet/table_json/thead_tbody_coco_train.json',
+        '/data/liuzhuang/Github/PubTabNet/table_json/row_coco_train.json',
         img_prefix=data_root + '/data/liuzhuang/DataSet/pubtabnet/train',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
         classes=classes,
         ann_file=data_root +
-        '/data/liuzhuang/Github/PubTabNet/table_json/thead_tbody_coco_val.json',
+        '/data/liuzhuang/Github/PubTabNet/table_json/row_coco_val.json',
         img_prefix=data_root + '/data/liuzhuang/DataSet/pubtabnet/val',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + '/data/liuzhuang/Github/PubTabNet/table_json/thead_tbody_coco_val.json',
+        ann_file=data_root + '/data/liuzhuang/Github/PubTabNet/table_json/row_coco_val.json',
         img_prefix=data_root + '/data/liuzhuang/DataSet/pubtabnet/val',
         pipeline=test_pipeline))
 evaluation = dict(metric=['bbox', 'segm'])
