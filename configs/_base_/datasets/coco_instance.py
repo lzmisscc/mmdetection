@@ -1,5 +1,5 @@
 dataset_type = 'CocoDataset'
-classes = ('thead', 'tbody',)
+classes = ('row',)
 
 data_root = ''
 img_norm_cfg = dict(
