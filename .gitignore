@@ -123,8 +123,7 @@ work_dirs/
 results/
 None/
 nohup.out
-<<<<<<< HEAD
 None/
-=======
-result_table/
->>>>>>> pp/new_detect_table
+None-row-col/
+None-thead-tbody/
+row_col/
