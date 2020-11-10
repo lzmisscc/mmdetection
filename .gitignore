@@ -127,3 +127,4 @@ nohup.*
 *.png
 thead_tbody/
 row_col/
+row/
