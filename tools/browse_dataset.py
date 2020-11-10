@@ -26,7 +26,7 @@ def parse_args():
     parser.add_argument(
         '--show-interval',
         type=int,
-        default=999,
+        default=200,
         help='the interval of show (ms)')
     args = parser.parse_args()
     return args
