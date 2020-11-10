@@ -1,6 +1,6 @@
 dataset_type = 'CocoDataset'
-classes = ('row', )
-
+classes = ('row', 'col')
+train_class = ('col', )
 data_root = ''
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
@@ -34,21 +34,21 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
-        classes=classes,
+        classes=train_class,
         ann_file=data_root +
         '/data/liuzhuang/Github/PubTabNet/table_json/row_coco_train.json',
         img_prefix=data_root + '/data/liuzhuang/DataSet/pubtabnet/train',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        classes=classes,
+        classes=train_class,
         ann_file=data_root +
         '/data/liuzhuang/Github/PubTabNet/table_json/row_coco_val.json',
         img_prefix=data_root + '/data/liuzhuang/DataSet/pubtabnet/val',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        classes=classes,
+        classes=train_class,
         ann_file=data_root + '/data/liuzhuang/Github/PubTabNet/table_json/row_coco_val.json',
         img_prefix=data_root + '/data/liuzhuang/DataSet/pubtabnet/val',
         pipeline=test_pipeline))
