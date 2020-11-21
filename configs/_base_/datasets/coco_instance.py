@@ -30,24 +30,24 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    samples_per_gpu=3,
-    workers_per_gpu=3,
+    samples_per_gpu=6,
+    workers_per_gpu=6,
     train=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + '/data/liuzhuang/Github/PubTabNet/table_json/table_coco_train.json',
-        img_prefix=data_root + '/data/liuzhuang/DataSet/pubtabnet/train',
+        ann_file=data_root + 'PubTabNet/table_json/table_train.json',
+        img_prefix=data_root + 'pubtabnet/train',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + '/data/liuzhuang/Github/PubTabNet/table_json/table_coco_val.json',
-        img_prefix=data_root + '/data/liuzhuang/DataSet/pubtabnet/val',
+        ann_file=data_root + 'PubTabNet/table_json/table_val.json',
+        img_prefix=data_root + 'pubtabnet/val',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + '/data/liuzhuang/Github/PubTabNet/table_json/table_coco_val.json',
-        img_prefix=data_root + '/data/liuzhuang/DataSet/pubtabnet/val',
+        ann_file=data_root + 'PubTabNet/table_json/table_val.json',
+        img_prefix=data_root + 'pubtabnet/val',
         pipeline=test_pipeline))
 evaluation = dict(metric=['bbox', 'segm'])
