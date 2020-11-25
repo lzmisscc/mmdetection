@@ -85,9 +85,9 @@ train_cfg = dict(
         debug=False),
     rpn_proposal=dict(
         nms_across_levels=False,
-        nms_pre=2000,
-        nms_post=1000,
-        max_num=1000,
+        nms_pre=3000,
+        nms_post=2000,
+        max_num=2000,
         nms_thr=0.7,
         min_bbox_size=0),
     rcnn=dict(
@@ -110,15 +110,15 @@ train_cfg = dict(
 test_cfg = dict(
     rpn=dict(
         nms_across_levels=False,
-        nms_pre=3000,
-        nms_post=3000,
-        max_num=1500,
+        nms_pre=2000,
+        nms_post=2000,
+        max_num=2000,
         nms_thr=0.5,
         min_bbox_size=0),
     rcnn=dict(
         score_thr=0.05,
         nms=dict(type='nms', iou_threshold=0.3),
-        max_per_img=1000,
+        max_per_img=1500,
         mask_thr_binary=0.5))
 dataset_type = 'CocoDataset'
 classes = ('cell', )
@@ -128,7 +128,7 @@ img_norm_cfg = dict(
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
-    dict(type='Resize', img_scale=(1333, 800), keep_ratio=True),
+    dict(type='Resize', img_scale=(2000, 1200), keep_ratio=True),
     dict(type='RandomFlip', flip_ratio=0.5),
     dict(
         type='Normalize',
@@ -160,7 +160,7 @@ test_pipeline = [
 ]
 data = dict(
     samples_per_gpu=6,
-    workers_per_gpu=10,
+    workers_per_gpu=20,
     train=dict(
         type='CocoDataset',
         classes=('cell', ),
@@ -169,7 +169,7 @@ data = dict(
         pipeline=[
             dict(type='LoadImageFromFile'),
             dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
-            dict(type='Resize', img_scale=(1333, 800), keep_ratio=True),
+            dict(type='Resize', img_scale=(2000, 1200), keep_ratio=True),
             dict(type='RandomFlip', flip_ratio=0.5),
             dict(
                 type='Normalize',
@@ -191,7 +191,7 @@ data = dict(
             dict(type='LoadImageFromFile'),
             dict(
                 type='MultiScaleFlipAug',
-                img_scale=(1333, 800),
+                img_scale=(2000, 1200),
                 flip=False,
                 transforms=[
                     dict(type='Resize', keep_ratio=True),
@@ -238,8 +238,8 @@ lr_config = dict(
     warmup='linear',
     warmup_iters=500,
     warmup_ratio=0.001,
-    step=[8, 11])
-total_epochs = 12
+    step=[16, 22])
+total_epochs = 24
 checkpoint_config = dict(interval=1)
 log_config = dict(interval=50, hooks=[dict(type='TextLoggerHook')])
 dist_params = dict(backend='nccl')
@@ -247,5 +247,5 @@ log_level = 'INFO'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
-work_dir = 'work_dir/cells_v2/'
-gpu_ids = [4]
+work_dir = 'work_dir/cells_v2/big_sr_dataset/'
+gpu_ids = range(0, 1)
