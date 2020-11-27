@@ -1,0 +1,1 @@
+python tools/test.py $1/mask_rcnn_r50_fpn_1x_coco.py $1/latest.pth --out result.pkl --show-dir $1/images/  --eval bbox

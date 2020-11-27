@@ -22,8 +22,8 @@ model = dict(
         feat_channels=256,
         anchor_generator=dict(
             type='AnchorGenerator',
-            scales=[2],
-            ratios=[0.5, 1.0, 2.0],
+            scales=[4,6],
+            ratios=[0.1, 0.3, 0.5, 1.0, 2.0],
             strides=[4, 8, 16, 32, 64]),
         bbox_coder=dict(
             type='DeltaXYWHBBoxCoder',
@@ -63,7 +63,7 @@ model = dict(
             num_convs=4,
             in_channels=256,
             conv_out_channels=256,
-            num_classes=80,
+            num_classes=1,
             loss_mask=dict(
                 type='CrossEntropyLoss', use_mask=True, loss_weight=1.0))))
 # model training and testing settings
@@ -119,6 +119,6 @@ test_cfg = dict(
         min_bbox_size=0),
     rcnn=dict(
         score_thr=0.05,
-        nms=dict(type='nms', iou_threshold=0.3),
+        nms=dict(type='nms', iou_threshold=0.5),
         max_per_img=1500,
         mask_thr_binary=0.5))
