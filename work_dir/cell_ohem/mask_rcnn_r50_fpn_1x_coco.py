@@ -21,7 +21,7 @@ model = dict(
         feat_channels=256,
         anchor_generator=dict(
             type='AnchorGenerator',
-            scales=[4, 6],
+            scales=[4],
             ratios=[0.1, 0.3, 0.5, 1.0, 2.0],
             strides=[4, 8, 16, 32, 64]),
         bbox_coder=dict(
@@ -99,7 +99,7 @@ train_cfg = dict(
             match_low_quality=True,
             ignore_iof_thr=-1),
         sampler=dict(
-            type='RandomSampler',
+            type='OHEMSampler',
             num=512,
             pos_fraction=0.25,
             neg_pos_ub=-1,
@@ -143,7 +143,7 @@ test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
         type='MultiScaleFlipAug',
-        img_scale=(2000, 2000),
+        img_scale=(1200, 1200),
         flip=False,
         transforms=[
             dict(type='Resize', keep_ratio=True),
@@ -159,7 +159,7 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    samples_per_gpu=16,
+    samples_per_gpu=8,
     workers_per_gpu=16,
     train=dict(
         type='CocoDataset',
@@ -247,5 +247,5 @@ log_level = 'INFO'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
-work_dir = 'work_dir/cell_anchor_scale/'
+work_dir = 'work_dir/cell_ohem'
 gpu_ids = range(0, 1)

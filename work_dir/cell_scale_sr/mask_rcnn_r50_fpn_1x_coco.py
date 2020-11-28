@@ -128,7 +128,7 @@ img_norm_cfg = dict(
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
-    dict(type='Resize', img_scale=(640, 640), keep_ratio=True),
+    dict(type='Resize', img_scale=[(640, 640), (1000, 1000)], keep_ratio=True),
     dict(type='RandomFlip', flip_ratio=0.5),
     dict(
         type='Normalize',
@@ -143,7 +143,7 @@ test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
         type='MultiScaleFlipAug',
-        img_scale=(2000, 2000),
+        img_scale=(1200, 1200),
         flip=False,
         transforms=[
             dict(type='Resize', keep_ratio=True),
@@ -159,7 +159,7 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    samples_per_gpu=16,
+    samples_per_gpu=8,
     workers_per_gpu=16,
     train=dict(
         type='CocoDataset',
@@ -169,7 +169,10 @@ data = dict(
         pipeline=[
             dict(type='LoadImageFromFile'),
             dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
-            dict(type='Resize', img_scale=(640, 640), keep_ratio=True),
+            dict(
+                type='Resize',
+                img_scale=[(640, 640), (1000, 1000)],
+                keep_ratio=True),
             dict(type='RandomFlip', flip_ratio=0.5),
             dict(
                 type='Normalize',
@@ -247,5 +250,5 @@ log_level = 'INFO'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
-work_dir = 'work_dir/cell_anchor_scale/'
+work_dir = 'work_dir/cell_scale_sr/'
 gpu_ids = range(0, 1)
